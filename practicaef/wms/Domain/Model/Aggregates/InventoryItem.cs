@@ -11,4 +11,14 @@ public partial class InventoryItem
     public double ReservedQuantity { get; private set; } = 0;
     public double PendingSupplyQuantity { get; private set; } = 0;
     public EInventoryItemStatus Status { get; private set; }
+    
+    public InventoryItem(string epicorSku, double minimumQuantity, double availableQuantity)
+    {
+        this.EpicorSku = Guid.Parse(epicorSku);
+        this.Status = EInventoryItemStatus.WithStock;
+        this.MinimumQuantity = minimumQuantity;
+        this.AvailableQuantity = availableQuantity;
+        this.ReservedQuantity = 0;
+        this.PendingSupplyQuantity = 0;
+    }
 }
