@@ -12,6 +12,15 @@ public class InventoryItemCommandService(
 {
     public async Task<InventoryItem?> Handle(CreateInventoryItemCommand command)
     {
+        if (command.MinimumQuantity <= 0)
+        {
+            throw new ArgumentException("Minimum quantity must be greater than 0"); 
+        }
+        if (command.AvailableQuantity < (command.MinimumQuantity * 3))
+        {
+            throw new ArgumentException("Available quantity must be at least 3 times the minimum quantity");
+        }
+        
         var inventoryItem = new InventoryItem(command.EpicorSku, command.MinimumQuantity, command.AvailableQuantity);
         await inventoryItemRepository.AddAsync(inventoryItem);
         await unitOfWork.CompleteAsync();

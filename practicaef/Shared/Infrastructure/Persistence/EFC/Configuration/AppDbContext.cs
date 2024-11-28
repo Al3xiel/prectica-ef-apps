@@ -28,6 +28,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<InventoryItem>().HasKey(i => i.Id);
         builder.Entity<InventoryItem>().Property(i => i.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<InventoryItem>().Property(i => i.EpicorSku).IsRequired();
+        builder.Entity<InventoryItem>().HasIndex(i => i.EpicorSku).IsUnique();
         builder.Entity<InventoryItem>().Property(i => i.Status).IsRequired();
         builder.Entity<InventoryItem>().Property(i => i.MinimumQuantity).IsRequired();
         builder.Entity<InventoryItem>().Property(i => i.AvailableQuantity).IsRequired();

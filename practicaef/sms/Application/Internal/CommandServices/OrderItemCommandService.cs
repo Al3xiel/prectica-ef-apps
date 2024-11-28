@@ -12,6 +12,14 @@ public class OrderItemCommandService (
 {
     public async Task<OrderItem?> Handle(CreateOrderItemCommand command)
     {
+        if(command.RequestedQuantity <= 0)
+        {
+            throw new ArgumentException("Requested quantity must be greater than 0");
+        }
+        if(command.OrderedAt > DateTime.Now)
+        {
+            throw new ArgumentException("Ordered at must be less than or equal to current date");
+        }
         var orderItem = new OrderItem(command.OrderId, command.EpicorSku, command.RequestedQuantity, command.OrderedAt);
         await orderItemRepository.AddAsync(orderItem);
         await unitOfWork.CompleteAsync();
