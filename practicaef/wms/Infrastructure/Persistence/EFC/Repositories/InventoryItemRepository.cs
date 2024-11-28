@@ -8,4 +8,10 @@ namespace practicaef.wms.Infrastructure.Persistence.EFC.Repositories;
 public class InventoryItemRepository(AppDbContext context): BaseRepository<InventoryItem>(context), IInventoryItemRepository
 {
     
+    public async Task<InventoryItem?> FindInventoryItemByEpicorSkuAsync(string epicorSku)
+    {   
+        var guid = Guid.Parse(epicorSku);
+        return Context.Set<InventoryItem>().FirstOrDefault(i =>i.EpicorSku == guid);
+    }
+        
 }

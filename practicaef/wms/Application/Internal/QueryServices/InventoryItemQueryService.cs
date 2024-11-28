@@ -11,4 +11,9 @@ public class InventoryItemQueryService(IInventoryItemRepository inventoryItemRep
     {
         return await inventoryItemRepository.FindByIdAsync(query.InventoryItemId);
     }
+
+    public async Task<InventoryItem?> Handle(GetInventoryItemByEpicorSku query)
+    {
+        return await inventoryItemRepository.FindInventoryItemByEpicorSkuAsync(query.EpicorSku);
+    }
 }
