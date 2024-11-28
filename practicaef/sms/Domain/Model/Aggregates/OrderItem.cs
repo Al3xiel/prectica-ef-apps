@@ -11,6 +11,8 @@ public partial class OrderItem
     public DateOnly OrderedAt { get; private set; }
     public EOrderItemStatus Status { get; private set; }
     
+    public OrderItem() { }
+    
     public OrderItem(int orderId, string epicorSku, double requestedQuantity, DateOnly orderedAt)
     {
         this.OrderId = orderId;

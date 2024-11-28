@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using practicaef.Shared.Domain.Repositories;
 using practicaef.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using practicaef.Shared.Infrastructure.Persistence.EFC.Configuration;
+using practicaef.Shared.Infrastructure.Persistence.EFC.Repositories;
 using practicaef.sms.Application.Internal.CommandServices;
 using practicaef.sms.Application.Internal.QueryServices;
 using practicaef.sms.Domain.Repositories;
@@ -41,6 +43,10 @@ builder.Services.AddSwaggerGen(options => options.EnableAnnotations());
 
 //Dependency Injection Configuration
 //TODO:ADD DEPENDENCY INJECTION CONFIGURATION
+
+//Shared Bounded Context Dependency Injection Configuration
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 builder.Services.AddScoped<IOrderItemQueryService, OrderItemQueryService>();
 builder.Services.AddScoped<IOrderItemCommandService, OrderItemCommandService>();
