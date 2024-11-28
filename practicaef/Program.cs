@@ -1,6 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using practicaef.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using practicaef.Shared.Infrastructure.Persistence.EFC.Configuration;
+using practicaef.sms.Application.Internal.CommandServices;
+using practicaef.sms.Application.Internal.QueryServices;
+using practicaef.sms.Domain.Repositories;
+using practicaef.sms.Domain.Services;
+using practicaef.sms.Infrastructure.Persistence.EFC.Repositories;
+using practicaef.wms.Application.Internal.CommandServices;
+using practicaef.wms.Application.Internal.QueryServices;
+using practicaef.wms.Domain.Repositories;
+using practicaef.wms.Domain.Services;
+using practicaef.wms.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +41,13 @@ builder.Services.AddSwaggerGen(options => options.EnableAnnotations());
 
 //Dependency Injection Configuration
 //TODO:ADD DEPENDENCY INJECTION CONFIGURATION
+builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+builder.Services.AddScoped<IOrderItemQueryService, OrderItemQueryService>();
+builder.Services.AddScoped<IOrderItemCommandService, OrderItemCommandService>();
+
+builder.Services.AddScoped<IInventoryItemRepository, InventoryItemRepository>();
+builder.Services.AddScoped<IInventoryItemQueryService, InventoryItemQueryService>();
+builder.Services.AddScoped<IInventoryItemCommandService, InventoryItemCommandService>();
 
 var app = builder.Build();
 
