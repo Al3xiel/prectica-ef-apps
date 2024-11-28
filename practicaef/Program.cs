@@ -4,15 +4,18 @@ using practicaef.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using practicaef.Shared.Infrastructure.Persistence.EFC.Configuration;
 using practicaef.Shared.Infrastructure.Persistence.EFC.Repositories;
 using practicaef.sms.Application.Internal.CommandServices;
+using practicaef.sms.Application.Internal.OutboundServices;
 using practicaef.sms.Application.Internal.QueryServices;
 using practicaef.sms.Domain.Repositories;
 using practicaef.sms.Domain.Services;
 using practicaef.sms.Infrastructure.Persistence.EFC.Repositories;
+using practicaef.wms.Application.ACL;
 using practicaef.wms.Application.Internal.CommandServices;
 using practicaef.wms.Application.Internal.QueryServices;
 using practicaef.wms.Domain.Repositories;
 using practicaef.wms.Domain.Services;
 using practicaef.wms.Infrastructure.Persistence.EFC.Repositories;
+using practicaef.wms.Interfaces.ACL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +57,9 @@ builder.Services.AddScoped<IOrderItemCommandService, OrderItemCommandService>();
 builder.Services.AddScoped<IInventoryItemRepository, InventoryItemRepository>();
 builder.Services.AddScoped<IInventoryItemQueryService, InventoryItemQueryService>();
 builder.Services.AddScoped<IInventoryItemCommandService, InventoryItemCommandService>();
+
+builder.Services.AddScoped<IInventoryItemsFacade, InventoryItemsContextFacade>();
+builder.Services.AddScoped<IInventoryItemsService, InventoryItemsService>();
 
 var app = builder.Build();
 
