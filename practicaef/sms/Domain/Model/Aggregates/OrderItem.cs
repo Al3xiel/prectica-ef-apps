@@ -8,12 +8,12 @@ public partial class OrderItem
     public int OrderId { get; private set; }
     public Guid EpicorSku { get; private set; }
     public double RequestedQuantity { get; private set; }
-    public DateOnly OrderedAt { get; private set; }
+    public DateTime OrderedAt { get; private set; }
     public EOrderItemStatus Status { get; private set; }
     
     public OrderItem() { }
     
-    public OrderItem(int orderId, string epicorSku, double requestedQuantity, DateOnly orderedAt)
+    public OrderItem(int orderId, string epicorSku, double requestedQuantity, DateTime orderedAt)
     {
         this.OrderId = orderId;
         this.EpicorSku = Guid.Parse(epicorSku);

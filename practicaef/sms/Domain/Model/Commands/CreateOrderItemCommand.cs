@@ -4,5 +4,5 @@ public record CreateOrderItemCommand(
     int OrderId,
     string EpicorSku,
     double RequestedQuantity,
-    DateOnly OrderedAt
+    DateTime OrderedAt
     );
