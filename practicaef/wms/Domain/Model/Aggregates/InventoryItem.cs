@@ -5,11 +5,10 @@ namespace practicaef.wms.Domain.Model.Aggregates;
 public partial class InventoryItem
 {
     public int Id { get;}
-    public string EpicorSku { get; private set; }
-    public int MinimumQuantity { get; private set; }
-    public int AvailableQuantity { get; private set; }
+    public Guid EpicorSku { get; private set; }
+    public double MinimumQuantity { get; private set; }
+    public double AvailableQuantity { get; private set; }
+    public double ReservedQuantity { get; private set; } = 0;
+    public double PendingSupplyQuantity { get; private set; } = 0;
     public EInventoryItemStatus Status { get; private set; }
-    
-    public InventoryItem(){}
-    
 }
